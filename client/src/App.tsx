@@ -1,4 +1,4 @@
-import { useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -6,8 +6,8 @@ import './App.css'
 function App() {
   const [count, setCount] = useState(0)
 
-  const callMe = async () =>{
-    const res  = await fetch("http://localhost:9999/test")
+  const callMe = async () => {
+    const res = await fetch("http://localhost:9999/askMe/?=what is the capital of guatemala?")
 
     const json = await res.json();
     console.log(json)
@@ -16,7 +16,7 @@ function App() {
 
   useEffect(() => {
     callMe();
-  },[]);
+  }, []);
 
   return (
     <>
