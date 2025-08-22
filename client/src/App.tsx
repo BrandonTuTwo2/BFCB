@@ -1,14 +1,17 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react';
+import TextMsg from './components/message';
 import './App.css'
 
 function App() {
+  const [texts, setTexts] = useState([<TextMsg name={'Confused Kelpi'} timestamp={'Timestamp?'} text={'so pretty'} />])
   const callMe = async () => {
     // const res = await fetch("http://localhost:9999/askMe/?=what is the capital of guatemala?")
 
     // const json = await res.json();
     // console.log(json)
     console.log("HIIII");
-
+    //pass actual stuff here
+    setTexts(texts.concat(<TextMsg name={'Confused Kelpi'} timestamp={'Timestamp?'} text={'umazing!'} />))
   }
 
   useEffect(() => {
@@ -19,18 +22,9 @@ function App() {
     <>
 
       <h1>HI ME</h1>
-      <div className="flex items-start gap-2.5">
-        <div className="flex flex-col gap-1 w-full max-w-[320px]">
-          <div className="flex items-center space-x-2 rtl:space-x-reverse">
-            <span className="text-sm font-semibold text-gray-900 dark:text-white">Confused Kelpi</span>
-            <span className="text-sm font-normal text-gray-500 dark:text-gray-400">Timestamp?</span>
-          </div>
-          <div className="flex flex-col leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700">
-            <p className="text-sm font-normal text-gray-900 dark:text-white"> text goes here!</p>
-          </div>
-        </div>
+      <div id='chat'>
+        {texts}
       </div>
-
       <form action={callMe}>
         <label htmlFor="chat" className="sr-only">Your message</label>
         <div className="flex items-center px-3 py-2 m-2 rounded-lg bg-gray-50 dark:bg-gray-700 ">
