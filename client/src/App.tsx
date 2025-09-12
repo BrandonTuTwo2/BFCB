@@ -1,23 +1,25 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type ReactElement } from 'react';
 import TextMsg from './components/message';
 import './App.css'
+import React from 'react';
 
 function App() {
-  const [texts, setTexts] = useState([<TextMsg name={'Confused Kelpi'} timestamp={'Timestamp?'} text={'so pretty'} key='1'/>])
+  const [texts, setTexts] = React.useState<ReactElement[]>([])
   const [chatCount, setChatCount] = useState(2);
   const callMe = async (form: FormData) => {
     const query = form.get("chat");
 
-    setTexts(texts.concat(<TextMsg name={'YOU'} timestamp={`${chatCount}`} text={`${query}`} key={`${chatCount}`}/>))
+    setTexts(texts => [...texts,(<TextMsg name={'YOU'} timestamp={`${chatCount}`} text={`${query}`} key={`${chatCount}`}/>)])
     setChatCount(chatCount + 1);
+    console.log(texts);
     //pass actual stuff here
     const res = await (await fetch(`http://localhost:9999/askMe/?=${query}`)).json();
-    setTexts(texts.concat(<TextMsg name={'Confused Kelpi'} timestamp={`${chatCount}`} text={`${res}`} key={`${chatCount}`}/>))
+    setTexts(texts => [...texts,(<TextMsg name={'Confused Kelpi'} timestamp={`${chatCount}`} text={`${res}`} key={`${chatCount}`}/>)])
     setChatCount(chatCount + 1);
 
     console.log(texts);
   }
-
+  
   useEffect(() => {
     // callMe();
   }, []);
@@ -25,7 +27,7 @@ function App() {
   return (
     <>
 
-      <h1 className='fixed top-0 left-0 right-0 mx-auto w-fit '>Babies' First Chatbot</h1>
+      <h1 className='fixed top-0 left-0 right-0 mx-auto w-fit '>Babies' First Chatbot Wra</h1>
       <div id='chat'>
         {texts}
       </div>
