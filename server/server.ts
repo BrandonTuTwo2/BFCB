@@ -30,7 +30,14 @@ app.get("/askMe", async (req, res) => {
     temperature: 0,
   });
 
-  const llmRes = await llm.invoke([{ role: "user", content: query }]);
+  const llmRes = await llm.invoke([
+    {
+      role: "system",
+      content:
+        "You are an expert in all fields and give short concise answers.",
+    },
+    { role: "user", content: query },
+  ]);
 
   res.json(llmRes.content);
 });
