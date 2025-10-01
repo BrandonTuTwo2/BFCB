@@ -17,11 +17,6 @@ app.listen(9999, () => {
   console.log("Server started on port 9999");
 });
 
-app.get("/test", (req, res) => {
-  console.log("HI");
-  res.json("hi me");
-});
-
 app.get("/askMe", async (req, res) => {
   const query = decodeURI(req.originalUrl.split("?=")[1]);
   console.log(query);

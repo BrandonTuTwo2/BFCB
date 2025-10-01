@@ -27,9 +27,12 @@ function App() {
     <>
 
       <h1 className='fixed top-0 left-0 right-0 mx-auto w-fit '>Babies' First Chatbot Wrapper</h1>
-      <div id='chat'>
-        {texts}
+      <div className='flex flex-row h-300 py-75'>
+        <div id='chat' className='max-h-screen overflow-y-auto '>
+          {texts}
+        </div>
       </div>
+
       <form onSubmit={callMe} className='fixed bottom-0 left-0 right-0 mx-auto w-fit'>
         <label htmlFor="chat" className="sr-only">Your message</label>
         <div className="flex items-center px-3 py-2 m-2 rounded-lg  ">
